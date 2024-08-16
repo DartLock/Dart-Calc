@@ -1,4 +1,4 @@
-import 'package:dart_calc/dart_calc.dart' as dart_calc;
+import 'package:dart_calc/calculate.dart' as dart_calc;
 import 'package:dart_calc/string_format.dart';
 import 'dart:io';
 import 'dart:math';
