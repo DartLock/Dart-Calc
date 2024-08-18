@@ -1,41 +1,20 @@
-import 'package:dart_calc/calculate.dart' as dart_calc;
-import 'package:dart_calc/string_format.dart';
-import 'dart:io';
-import 'dart:math';
+import 'package:dart_calc/combiner.dart';
 
-void main(List<String> arguments) {
-  print('Hello world: ${dart_calc.calculate()}!');
+void main() {
+  String sourceExpression = "- 5 + (3 + 2 - 3 * 6 + 2) / 3 + (1 * 2 + (6 + 8) * 4)";
+  print("source expression : ${sourceExpression}");
 
-  while(true) {
-    print("Enter math expression OR 'q' for exit");
 
-    final input = stdin.readLineSync();
+  //while(true) {
+  // print("Enter math expression OR 'q' for exit");
+  //
+  // final input = stdin.readLineSync();
+  //
+  // if (input == 'q') break;
 
-    if (input == 'q') break;
+  // sourceExpression = sourceExpression!.replaceAll(new RegExp(r'\s'), '');
+  Combiner.calculate(sourceExpression);
+  //}
 
-    final expression = input!.replaceAll(new RegExp(r'\s'), '');
-    final expression_elements = expression!.trim().split(new RegExp(r"b*"));
-
-    var result;
-
-    try {
-      double first_element = double.parse(expression_elements.first);
-      double second_element = double.parse(expression_elements.last);
-      final operand = expression_elements[1];
-
-      result = switch(operand) {
-        "-" => "$input = ${format(first_element - second_element)}",
-        "+" => "$input = ${format(first_element + second_element)}",
-        "*" => "$input = ${format(first_element * second_element)}",
-        "/" => "$input = ${format(first_element / second_element)}",
-        "%" => "$input = ${format(first_element % second_element)}",
-        "^" => "$input = ${format(pow(first_element, second_element).toDouble())}",
-        _ => "Unknown operation"
-      };
-    } on Exception catch (e) {
-      result = "Wrong expression: $e";
-    }
-
-    print(result);
-  }
+  print(Combiner.result);
 }
